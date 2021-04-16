@@ -55,7 +55,7 @@ com o seguinte body:
 
 "cliente":{
 
-"id": 1
+"id": "1"
 
 },
 
@@ -72,7 +72,7 @@ com o seguinte body:
 ]
 }
 
->> **Nota** Caso deseje adicionar mais de um produto para, basta alterar o array de produto para:
+>> **Nota** Caso deseje adicionar mais de um produto, basta alterar o array de produto para:
 >"produto": [
 {"id": "1"},{"id": "2"}
 ]
