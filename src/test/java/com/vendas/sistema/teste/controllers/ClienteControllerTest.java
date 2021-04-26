@@ -36,14 +36,14 @@ public class ClienteControllerTest {
     private static final String ENDPOINT = "/api/clientes";
 
     @Test
-    public void of_ListarClientesSucesso() throws Exception {
+    public void listarClientesSucesso() throws Exception {
         mockMvc.perform(get(ENDPOINT))
                 .andExpect(status().is2xxSuccessful())
                 .andDo(print());
     }
 
     @Test
-    public void of_CadastrarClientesSucesso201() throws Exception {
+    public void cadastrarClientesSucesso201() throws Exception {
         mockMvc.perform(post(ENDPOINT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(convertObjectToJsonBytes(umClienteRequest())))
@@ -52,7 +52,7 @@ public class ClienteControllerTest {
     }
 
     @Test
-    public void of_CadastrarClientesFalha400() throws Exception {
+    public void cadastrarClientesFalha400() throws Exception {
         mockMvc.perform(post(ENDPOINT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(convertObjectToJsonBytes(umClienteFalhaRequest())))
@@ -61,7 +61,7 @@ public class ClienteControllerTest {
     }
 
     @Test
-    public void of_AtualizarClienteSucesso200() throws Exception {
+    public void atualizarClienteSucesso200() throws Exception {
         mockMvc.perform(put(ENDPOINT + "/{id}", 1)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(convertObjectToJsonBytes(umClienteAtualizarRequest())))
@@ -70,7 +70,7 @@ public class ClienteControllerTest {
     }
 
     @Test
-    public void of_AtualizarClienteFalha400() throws Exception {
+    public void atualizarClienteFalha400() throws Exception {
         mockMvc.perform(put(ENDPOINT + "/{id}", 1)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(convertObjectToJsonBytes(umClienteAtualizarFalhaRequest())))
@@ -79,7 +79,7 @@ public class ClienteControllerTest {
     }
 
     @Test
-    public void of_DeletarClienteSucesso204() throws Exception {
+    public void deletarClienteSucesso204() throws Exception {
         when(clienteService.removerCliente(1))
                 .thenReturn(new ResponseEntity<Void>(HttpStatus.NO_CONTENT));
 
@@ -89,7 +89,7 @@ public class ClienteControllerTest {
     }
 
     @Test
-    public void of_DeletarClienteNaoEncontrado404() throws Exception {
+    public void deletarClienteNaoEncontrado404() throws Exception {
         when(clienteService.removerCliente(1))
                 .thenReturn(new ResponseEntity<Void>(HttpStatus.NOT_FOUND));
 

@@ -30,7 +30,12 @@ public class Venda {
     @ManyToOne
     private Vendedor vendedor;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "VENDA_PRODUTO", joinColumns = {
+            @JoinColumn(name = "VENDA_ID", foreignKey = @ForeignKey(name = "FK_VENDA_PRODUTO_VENDDA"),
+                    referencedColumnName = "id")}, inverseJoinColumns = {
+            @JoinColumn(name = "PRODUTO_ID", foreignKey = @ForeignKey(name = "FK_VENDA_PRODUTO"),
+                    referencedColumnName = "id")})
+    @ManyToMany
     private List<Produto> produto = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)

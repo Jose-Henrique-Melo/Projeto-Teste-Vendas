@@ -1,11 +1,10 @@
-package com.vendas.sistema.teste.service1;
+package com.vendas.sistema.teste.service;
 
 import com.vendas.sistema.teste.dto.response.ProdutoResumoResponse;
 import com.vendas.sistema.teste.dto.response.VendaResumoResponse;
 import com.vendas.sistema.teste.dto.response.VendasVendedorPorPeriodoResponse;
 import com.vendas.sistema.teste.model.entities.enums.ESituacaoVenda;
 import com.vendas.sistema.teste.model.exception.NegocioException;
-import com.vendas.sistema.teste.service.VendaService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +46,7 @@ public class VendaServiceTest {
 
         assertThat(venda.getProduto())
                 .extracting(ProdutoResumoResponse::getId)
-                .containsAnyElementsOf(List.of(1, 4));
+                .containsAnyElementsOf(List.of(1, 2));
 
         assertThat(venda)
                 .extracting("dataAbertura").isNotNull();

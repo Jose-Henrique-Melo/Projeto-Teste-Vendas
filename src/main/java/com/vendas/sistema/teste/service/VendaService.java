@@ -70,17 +70,17 @@ public class VendaService {
         return ResponseEntity.notFound().build();
     }
 
-    private void localizaCliente(Venda venda) {
+    private void defineCliente(Venda venda) {
         var cliente = clienteRepository.findById(venda.getCliente().getId()).orElseThrow(() -> new NegocioException("Cliente não encontrado!"));
         venda.setCliente(cliente);
     }
 
-    private void localizaVendedor(Venda venda) {
+    private void defineVendedor(Venda venda) {
         var vendedor = vendedorRepository.findById(venda.getVendedor().getId()).orElseThrow(() -> new NegocioException("Vendedor não encontrado!"));
         venda.setVendedor(vendedor);
     }
 
-    private void localizaProdutos(Venda venda) {
+    private void defineProdutos(Venda venda) {
         var produtos = produtoRepository.findAllById(venda.getProduto()
                 .stream()
                 .map(Produto::getId)
@@ -97,9 +97,9 @@ public class VendaService {
     }
 
     public Venda salvarVenda(Venda venda) {
-        localizaCliente(venda);
-        localizaVendedor(venda);
-        localizaProdutos(venda);
+        defineCliente(venda);
+        defineVendedor(venda);
+        defineProdutos(venda);
         return vendaRepository.save(venda);
     }
 
@@ -129,8 +129,8 @@ public class VendaService {
     public List<VendasVendedorPorPeriodoResponse> listarVendasPorPeriodo(String dataInicio, String dataFim) {
         DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("yyyy-MM-ddHH:mm");
 
-        var quantidadeDias = (Long.valueOf(LocalDateTime.parse(dataInicio, formatterData)
-                .until(LocalDateTime.parse(dataFim, formatterData), ChronoUnit.DAYS)).floatValue());
+        var quantidadeDias = (Float.valueOf(LocalDateTime.parse(dataInicio, formatterData)
+                .until(LocalDateTime.parse(dataFim, formatterData), ChronoUnit.DAYS)));
 
         var dadosVendedor = vendaRepository.findAllByDateBetween(dataInicio, dataFim);
 

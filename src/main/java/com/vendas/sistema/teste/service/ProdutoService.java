@@ -31,7 +31,7 @@ public class ProdutoService {
     }
 
     public List<ProdutoResumoResponse> toColletionModel(List<Produto> produtos) {
-        return produtos.stream().map(produto -> toModel(produto)).collect(Collectors.toList());
+        return produtos.stream().map(this::toModel).collect(Collectors.toList());
     }
 
     public Produto toEntity(ProdutoRequest produtoRequest) {

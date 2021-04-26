@@ -31,7 +31,7 @@ public class ClienteService {
     }
 
     public List<ClienteResumoResponse> toColletionModel(List<Cliente> clientes) {
-        return clientes.stream().map(cliente -> toModel(cliente)).collect(Collectors.toList());
+        return clientes.stream().map(this::toModel).collect(Collectors.toList());
     }
 
     public Cliente toEntity(ClienteRequest clienteRequest) {

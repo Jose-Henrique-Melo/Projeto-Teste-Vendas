@@ -36,7 +36,7 @@ public class VendaControllerTest {
     private VendaService vendaService;
 
     @Test
-    public void of_deveRetornarCadastroVendaResponse() throws Exception {
+    public void retornarCadastroVendaResponse() throws Exception {
         mockMvc.perform(post(ENDPOINT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(convertObjectToJsonBytes(umaVendaRequest())))
@@ -45,7 +45,7 @@ public class VendaControllerTest {
     }
 
     @Test
-    public void of_deveRetornarVendaResponseFinalizada() throws Exception {
+    public void retornarVendaResponseFinalizada() throws Exception {
         mockMvc.perform(put(ENDPOINT + "/finalizar/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(convertObjectToJsonBytes(umaVendaResumoResponseAberta())))
@@ -54,7 +54,7 @@ public class VendaControllerTest {
     }
 
     @Test
-    public void of_deveRetornarVendaResponseCancelada() throws Exception {
+    public void retornarVendaResponseCancelada() throws Exception {
         mockMvc.perform(put(ENDPOINT + "/cancelar/{id}", 100)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(convertObjectToJsonBytes(umaVendaResumoResponseAberta())))
@@ -63,14 +63,14 @@ public class VendaControllerTest {
     }
 
     @Test
-    public void of_deveRetornarListaVendasVendedorPorPeriodoResponse() throws Exception {
+    public void retornarListaVendasVendedorPorPeriodoResponse() throws Exception {
         mockMvc.perform(get(ENDPOINT + "/filtros?dataInicio=2021-03-1101:11&dataFim=2021-03-1123:59"))
                 .andExpect(status().is2xxSuccessful())
                 .andDo(print());
     }
 
     @Test
-    public void of_deveRetornarErroSemClienteVendaRequest() throws Exception {
+    public void retornarErroSemClienteVendaRequest() throws Exception {
         when(vendaService.cadastrarVendaAbertura(umaVendaRequestSemCliente()))
                 .thenThrow(new NegocioException("Cliente não encontrado!"));
 
@@ -90,7 +90,7 @@ public class VendaControllerTest {
     }
 
     @Test
-    public void of_deveRetornarErroSemProdutoVendaRequest() throws Exception {
+    public void retornarErroSemProdutoVendaRequest() throws Exception {
         when(vendaService.cadastrarVendaAbertura(umaVendaRequestSemProdutos()))
                 .thenThrow(new NegocioException("Produto não encontrado!"));
 

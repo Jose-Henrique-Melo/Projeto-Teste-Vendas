@@ -36,14 +36,14 @@ public class VendedorControllerTest {
     private static final String ENDPOINT = "/api/vendedores";
 
     @Test
-    public void of_ListarVendedoresSucesso() throws Exception {
+    public void listarVendedoresSucesso() throws Exception {
         mockMvc.perform(get(ENDPOINT))
                 .andExpect(status().is2xxSuccessful())
                 .andDo(print());
     }
 
     @Test
-    public void of_CadastrarVendedorSucesso201() throws Exception {
+    public void cadastrarVendedorSucesso201() throws Exception {
         mockMvc.perform(post(ENDPOINT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(convertObjectToJsonBytes(umVendedorRequest())))
@@ -52,7 +52,7 @@ public class VendedorControllerTest {
     }
 
     @Test
-    public void of_CadastrarVendedorFalha400() throws Exception {
+    public void cadastrarVendedorFalha400() throws Exception {
         mockMvc.perform(post(ENDPOINT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(convertObjectToJsonBytes(umVendedorFalhaRequest())))
@@ -61,7 +61,7 @@ public class VendedorControllerTest {
     }
 
     @Test
-    public void of_AtualizarVendedorSucesso200() throws Exception {
+    public void atualizarVendedorSucesso200() throws Exception {
         mockMvc.perform(put(ENDPOINT + "/{id}", 1)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(convertObjectToJsonBytes(umVendedorAtualizarRequest())))
@@ -70,7 +70,7 @@ public class VendedorControllerTest {
     }
 
     @Test
-    public void of_AtualizarVendedorFalha400() throws Exception {
+    public void atualizarVendedorFalha400() throws Exception {
         mockMvc.perform(put(ENDPOINT + "/{id}", 1)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(convertObjectToJsonBytes(umVendedorAtualizarFalhaRequest())))
@@ -79,7 +79,7 @@ public class VendedorControllerTest {
     }
 
     @Test
-    public void of_DeletarVendedorSucesso204() throws Exception {
+    public void deletarVendedorSucesso204() throws Exception {
         when(vendedorService.removerVendedor(1))
                 .thenReturn(new ResponseEntity<Void>(HttpStatus.NO_CONTENT));
 
@@ -89,7 +89,7 @@ public class VendedorControllerTest {
     }
 
     @Test
-    public void of_DeletarVendedorNaoEncontrado404() throws Exception {
+    public void deletarVendedorNaoEncontrado404() throws Exception {
         when(vendedorService.removerVendedor(1))
                 .thenReturn(new ResponseEntity<Void>(HttpStatus.NOT_FOUND));
 

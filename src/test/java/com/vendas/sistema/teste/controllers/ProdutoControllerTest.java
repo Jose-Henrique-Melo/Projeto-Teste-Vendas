@@ -36,14 +36,14 @@ public class ProdutoControllerTest {
     private static final String ENDPOINT = "/api/produtos";
 
     @Test
-    public void of_ListarProdutosSucesso() throws Exception {
+    public void listarProdutosSucesso() throws Exception {
         mockMvc.perform(get(ENDPOINT))
                 .andExpect(status().is2xxSuccessful())
                 .andDo(print());
     }
 
     @Test
-    public void of_CadastrarProdutoComDescontoSucesso201() throws Exception {
+    public void cadastrarProdutoComDescontoSucesso201() throws Exception {
         mockMvc.perform(post(ENDPOINT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(convertObjectToJsonBytes(umProdutoRequestComDesconto())))
@@ -52,7 +52,7 @@ public class ProdutoControllerTest {
     }
 
     @Test
-    public void of_CadastrarProdutoSemDescontoSucesso201() throws Exception {
+    public void cadastrarProdutoSemDescontoSucesso201() throws Exception {
         mockMvc.perform(post(ENDPOINT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(convertObjectToJsonBytes(umProdutoRequestSemDesconto())))
@@ -61,7 +61,7 @@ public class ProdutoControllerTest {
     }
 
     @Test
-    public void of_CadastrarProdutoComDescontoFalha400() throws Exception {
+    public void cadastrarProdutoComDescontoFalha400() throws Exception {
         mockMvc.perform(post(ENDPOINT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(convertObjectToJsonBytes(umProdutoRequestComDescontoFalha())))
@@ -70,7 +70,7 @@ public class ProdutoControllerTest {
     }
 
     @Test
-    public void of_CadastrarProdutoSemDescontoFalha400() throws Exception {
+    public void cadastrarProdutoSemDescontoFalha400() throws Exception {
         mockMvc.perform(post(ENDPOINT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(convertObjectToJsonBytes(umProdutoRequestSemDescontoFalha())))
@@ -79,7 +79,7 @@ public class ProdutoControllerTest {
     }
 
     @Test
-    public void of_AtualizarProdutoComDescontoSucesso200() throws Exception {
+    public void atualizarProdutoComDescontoSucesso200() throws Exception {
         mockMvc.perform(put(ENDPOINT + "/{id}", 1)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(convertObjectToJsonBytes(umProdutoRequestAtualizarComDesconto())))
@@ -88,7 +88,7 @@ public class ProdutoControllerTest {
     }
 
     @Test
-    public void of_AtualizarProdutoSemDescontoSucesso200() throws Exception {
+    public void atualizarProdutoSemDescontoSucesso200() throws Exception {
         mockMvc.perform(put(ENDPOINT + "/{id}", 1)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(convertObjectToJsonBytes(umProdutoRequestAtualizarSemDesconto())))
@@ -97,7 +97,7 @@ public class ProdutoControllerTest {
     }
 
     @Test
-    public void of_AtualizarProdutoComDescontoFalha400() throws Exception {
+    public void atualizarProdutoComDescontoFalha400() throws Exception {
         mockMvc.perform(put(ENDPOINT + "/{id}", 1)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(convertObjectToJsonBytes(umProdutoRequestAtualizarComDescontoFalha())))
@@ -106,7 +106,7 @@ public class ProdutoControllerTest {
     }
 
     @Test
-    public void of_AtualizarProdutoSemDescontoFalha400() throws Exception {
+    public void atualizarProdutoSemDescontoFalha400() throws Exception {
         mockMvc.perform(put(ENDPOINT + "/{id}", 1)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(convertObjectToJsonBytes(umProdutoRequestAtualizarSemDescontoFalha())))
@@ -115,7 +115,7 @@ public class ProdutoControllerTest {
     }
 
     @Test
-    public void of_DeletarVendedorSucesso204() throws Exception {
+    public void deletarVendedorSucesso204() throws Exception {
         when(produtoService.removerProduto(1))
                 .thenReturn(new ResponseEntity<Void>(HttpStatus.NO_CONTENT));
 
@@ -125,7 +125,7 @@ public class ProdutoControllerTest {
     }
 
     @Test
-    public void of_DeletarProdutoNaoEncontrado404() throws Exception {
+    public void deletarProdutoNaoEncontrado404() throws Exception {
         when(produtoService.removerProduto(1))
                 .thenReturn(new ResponseEntity<Void>(HttpStatus.NOT_FOUND));
 

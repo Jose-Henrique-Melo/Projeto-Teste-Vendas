@@ -1,8 +1,7 @@
-package com.vendas.sistema.teste.service1;
+package com.vendas.sistema.teste.service;
 
 import com.vendas.sistema.teste.model.entities.Vendedor;
 import com.vendas.sistema.teste.model.exception.NegocioException;
-import com.vendas.sistema.teste.service.VendedorService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
